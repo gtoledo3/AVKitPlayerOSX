@@ -98,15 +98,15 @@
 	// Show trim controls
 	[self.playerView beginTrimmingWithCompletionHandler:NULL];
 }
-//needs to add file extension to fix
+//needs to add file extension to update apple code, and also move endSheet to main thread
 - (IBAction)startExport:(id)sender
 {
 	// Pause playback before starting the export since the user will not be able to interact with transport controls to pause it themselves once the export has started
 	[self.playerView.player pause];
 	
-	NSSavePanel *savePanel = [NSSavePanel savePanel];
-    [savePanel setAllowedFileTypes:[NSArray arrayWithObject:@"mp4"]];
-
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    [savePanel setAllowedFileTypes:[NSArray arrayWithObject:AVFileTypeQuickTimeMovie]];
+    
 	[savePanel beginSheetModalForWindow:self.windowForSheet completionHandler:^(NSInteger result) {
 		if (result == NSFileHandlingPanelOKButton)
 		{
